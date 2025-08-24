@@ -13,11 +13,17 @@ contract FundMe {
      * @notice Gửi ETH vào hợp đồng để ủng hộ dự án
      */
     function fund() public payable {
-        // TODO: Implement minimum USD value requirement
-        // TODO: Keep track of funders and amounts
-        // TODO: Emit events for transparency
+        // Kiểm tra số lượng ETH tối thiểu (1 ETH = 1e18 Wei)
+        require(msg.value > 1e18, "You need to spend more ETH!");
     }
     
+    /**
+     * @dev Lấy số dư hiện tại của contract
+     */
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
     /**
      * @dev Hàm rút tiền cho owner (sẽ implement sau)
      * @notice Chỉ owner mới có thể rút toàn bộ số dư
